@@ -1,0 +1,9 @@
+export function getCurrentSession(): any;
+export function getSessions(): any[];
+export function getSessionsCount(): number;
+export function getBurnedCount(): number;
+export function logoutCurrent(): void;
+export function loginUser(username: string, password: string): Promise<any>;
+export function registerUser(name: string, username: string, password: string): Promise<any>;
+declare const _default: any;
+export default _default;

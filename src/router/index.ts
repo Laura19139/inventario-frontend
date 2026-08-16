@@ -11,7 +11,7 @@ const routes = [
     {
         path: '/dashboard',
         component: Dashboard,
-        beforeEnter: (to, from, next) => {
+        beforeEnter: (_to: any, _from: any, next: any) => {
             if (getCurrentSession()) next()
             else next('/')
         }
