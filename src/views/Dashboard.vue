@@ -1,11 +1,11 @@
 <template>
     <div class="container">
         <div class="card">
-            <div style="display:flex; justify-content:space-between; align-items:center;">
+            <div style="display:flex; justify-content:space-between; align-items:center; gap:12px; flex-wrap:wrap;">
                 <h2>Dashboard</h2>
-                <div>
-                    <!-- <button class="btn secondary" @click="$router.push('/')">Volver</button> -->
-                    <button class="btn" style="margin-left:8px;" @click="logout">Cerrar sesión</button>
+                <div style="display:flex; gap:8px; flex-wrap:wrap;">
+                    <button class="btn secondary" @click="$router.push('/users')">Usuarios</button>
+                    <button class="btn" @click="logout">Cerrar sesión</button>
                 </div>
             </div>
 
@@ -87,10 +87,19 @@ export default {
 
 button {
     padding: 10px 20px;
-    background: #ef4444;
     border: none;
-    color: white;
     border-radius: 5px;
     cursor: pointer;
+    font-weight: 600;
+}
+
+.btn {
+    background: #ef4444;
+    color: white;
+}
+
+.btn.secondary {
+    background: #0ea5e9;
+    color: white;
 }
 </style>

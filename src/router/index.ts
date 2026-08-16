@@ -3,6 +3,7 @@ import Login from '../views/Login.vue'
 import Register from '../views/Register.vue'
 import Dashboard from '../views/Dashboard.vue'
 import Products from '../views/Products.vue'
+import Users from '../views/Users.vue'
 import { getCurrentSession } from '../services/api'
 
 const routes = [
@@ -19,6 +20,14 @@ const routes = [
     {
         path: '/products',
         component: Products
+    },
+    {
+        path: '/users',
+        component: Users,
+        beforeEnter: (_to: any, _from: any, next: any) => {
+            if (getCurrentSession()) next()
+            else next('/')
+        }
     }
 ]
 

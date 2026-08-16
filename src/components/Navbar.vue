@@ -12,6 +12,7 @@
 
             <template v-else>
                 <router-link to="/dashboard">Dashboard</router-link>
+                <router-link to="/users">Usuarios</router-link>
                 <a href="#" @click.prevent="logout">Cerrar sesión</a>
             </template>
         </div>

@@ -15,9 +15,13 @@ import Navbar from './components/Navbar.vue'
 
 <style>
 body {
-  background-image: url("/images/background.jpg");
+  min-height: 100vh;
+  margin: 0;
+  background-image: linear-gradient(rgba(255, 255, 255, 0.72), rgba(255, 255, 255, 0.72)), url("/images/background.jpg");
   background-repeat: no-repeat;
-  background-size: 100%;
+  background-size: cover;
+  background-position: center;
+  color: #0f172a;
 }
 
 .container {
