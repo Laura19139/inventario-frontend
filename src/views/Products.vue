@@ -14,42 +14,44 @@
       </div>
     </div>
 
-    <div v-if="loading" class="loading">Cargando productos...</div>
+    <div class="catalog-main">
+      <div v-if="loading" class="loading">Cargando productos...</div>
 
-    <div v-else class="product-grid">
-      <article v-for="product in products" :key="product.id" class="product-card">
-        <div class="thumb" :style="{ background: product.color }">
-          <span>{{ product.emoji }}</span>
-        </div>
-
-        <div class="content">
-          <div class="meta-row">
-            <span class="badge">{{ product.category }}</span>
-            <span class="sku">{{ product.sku }}</span>
+      <div v-else class="product-grid">
+        <article v-for="product in products" :key="product.id" class="product-card">
+          <div class="thumb" :style="{ background: product.color }">
+            <span>{{ product.emoji }}</span>
           </div>
 
-          <h3>{{ product.name }}</h3>
+          <div class="content">
+            <div class="meta-row">
+              <span class="badge">{{ product.category }}</span>
+              <span class="sku">{{ product.sku }}</span>
+            </div>
 
-          <div class="stats">
-            <div>
-              <small>Precio</small>
-              <strong>${{ product.price.toFixed(2) }}</strong>
+            <h3>{{ product.name }}</h3>
+
+            <div class="stats">
+              <div>
+                <small>Precio</small>
+                <strong>{{ formatCOP(product.price) }}</strong>
+              </div>
+              <div>
+                <small>Stock</small>
+                <strong>{{ product.stock }}</strong>
+              </div>
             </div>
-            <div>
-              <small>Stock</small>
-              <strong>{{ product.stock }}</strong>
-            </div>
+
+            <button class="action-btn">Ver detalle</button>
           </div>
+        </article>
+      </div>
 
-          <button class="action-btn">Ver detalle</button>
-        </div>
-      </article>
-    </div>
-
-    <div v-if="!loading" class="pagination">
-      <button :disabled="page === 1" @click="goToPage(page - 1)">Anterior</button>
-      <span>Página {{ page }} / {{ totalPages }}</span>
-      <button :disabled="page === totalPages" @click="goToPage(page + 1)">Siguiente</button>
+      <div v-if="!loading" class="pagination">
+        <button :disabled="page === 1" @click="goToPage(page - 1)">Anterior</button>
+        <span>Página {{ page }} / {{ totalPages }}</span>
+        <button :disabled="page === totalPages" @click="goToPage(page + 1)">Siguiente</button>
+      </div>
     </div>
   </div>
 </template>
@@ -85,6 +87,15 @@ export default {
     this.loadProducts()
   },
   methods: {
+    formatCOP(value) {
+      const rounded = Math.round(Number(value) || 0)
+      return new Intl.NumberFormat('es-CO', {
+        style: 'currency',
+        currency: 'COP',
+        minimumFractionDigits: 0,
+        maximumFractionDigits: 0
+      }).format(rounded)
+    },
     async loadProducts() {
       this.loading = true
       try {
@@ -114,7 +125,7 @@ export default {
 
 <style scoped>
 .products-page {
-  max-width: 1180px;
+  max-width: 1280px;
   margin: 0 auto;
   padding: 32px 16px 60px;
 }
@@ -134,6 +145,11 @@ export default {
   color: #64748b;
   font-size: 11px;
   font-weight: 700;
+}
+
+.eyebrow.small {
+  margin-bottom: 4px;
+  font-size: 10px;
 }
 
 h1 {
@@ -157,6 +173,10 @@ h1 {
   min-width: 180px;
   font-size: 14px;
   color: #0f172a;
+}
+
+.catalog-main {
+  min-width: 0;
 }
 
 .product-grid {

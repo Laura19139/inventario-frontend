@@ -3,6 +3,7 @@ import Login from '../views/Login.vue'
 import Register from '../views/Register.vue'
 import Dashboard from '../views/Dashboard.vue'
 import Products from '../views/Products.vue'
+import Cart from '../views/Cart.vue'
 import Users from '../views/Users.vue'
 import { getCurrentSession } from '../services/api'
 
@@ -20,6 +21,10 @@ const routes = [
     {
         path: '/products',
         component: Products
+    },
+    {
+        path: '/cart',
+        component: Cart
     },
     {
         path: '/users',
